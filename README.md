@@ -6,7 +6,7 @@
 
 3.- Diseño e integración de sensores/cámaras para uso en ..... (sujeto a industria)
 
-4.-Diseño e implementación de sistemas electrónicos digitales y de potencia  ¿¿¿¿¿¿¿¿
+4.- Generación de interfaces y/o sistema operativo para comunicación entre CPU-MIC-ACT-Users
 ## Proyectos Electrónicos
 Nicolás: Cuerpo y chasis
 
