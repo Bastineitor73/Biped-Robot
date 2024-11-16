@@ -6,7 +6,7 @@
 
 3.- Diseño e integración de sensores/cámaras para uso en ..... (sujeto a industria)
 
-4.-Diseño e implementación de sistemas electrónicos digitales y de potencia
+4.-Diseño e implementación de sistemas electrónicos digitales y de potencia  ¿¿¿¿¿¿¿¿
 ## Proyectos Electrónicos
 Nicolás: Cuerpo y chasis
 
