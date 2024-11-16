@@ -4,9 +4,9 @@
 
 2.- Diseño, implementación y caracterización electromecánica de un robot bípedo
 
-3.- Diseño e integración de sensores para uso en ..... (sujeto a industria)
+3.- Diseño e integración de sensores/cámaras para uso en ..... (sujeto a industria)
 
-4.- 
+4.- Control....
 ## Proyectos Electrónicos
 Nicolás: Cuerpo y chasis
 
