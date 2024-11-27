@@ -6,7 +6,7 @@
 
 3.- Diseño e integración de sensores/cámaras para uso en ..... (sujeto a industria) --> Nico
 
-4.- Control de estabilidad y movimiento .........
+4.- Control de estabilidad y movimiento .........--> Matias
 
 5.- Generación de interfaces y/o sistema operativo para comunicación entre CPU-MIC-ACT-Users
 
