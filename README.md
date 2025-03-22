@@ -3,9 +3,11 @@
 "Crear un robot bípedo estable y escalable a lo largo del tiempo desarrollado por alumnos del DIE, capaz de desenvolverse en entornos de alta dinámica"
 
 ## Visiones
-![image](https://github.com/user-attachments/assets/a027199c-404f-4b3b-92d3-a6849c4f1104)
-![image](https://github.com/user-attachments/assets/e6750069-0a85-4fd5-9256-6ceb4cf5fc8f)
-![image](https://github.com/user-attachments/assets/7e9c38a3-365e-46b8-b8cd-3efd348a5929)
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/a027199c-404f-4b3b-92d3-a6849c4f1104" width="300"/>
+  <img src="https://github.com/user-attachments/assets/e6750069-0a85-4fd5-9256-6ceb4cf5fc8f" width="300"/>
+  <img src="https://github.com/user-attachments/assets/7e9c38a3-365e-46b8-b8cd-3efd348a5929" width="300"/>
+</p>
 
 ## Temas
 1.- Modelación y generación de un gemelo virtual para un robot bípedo con objetivos de entrenamientos --> René Pezo
