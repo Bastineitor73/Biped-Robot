@@ -4,9 +4,9 @@
 
 ## Visiones
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/a027199c-404f-4b3b-92d3-a6849c4f1104" width="300" height="400"/>
-  <img src="https://github.com/user-attachments/assets/e6750069-0a85-4fd5-9256-6ceb4cf5fc8f" width="300" height="400"/>
-  <img src="https://github.com/user-attachments/assets/7e9c38a3-365e-46b8-b8cd-3efd348a5929" width="300" height="400"/>
+  <img src="https://github.com/user-attachments/assets/a027199c-404f-4b3b-92d3-a6849c4f1104" width="300" height="350"/>
+  <img src="https://github.com/user-attachments/assets/e6750069-0a85-4fd5-9256-6ceb4cf5fc8f" width="300" height="350"/>
+  <img src="https://github.com/user-attachments/assets/7e9c38a3-365e-46b8-b8cd-3efd348a5929" width="300" height="300"/>
 </p>
 
 ## Temas
