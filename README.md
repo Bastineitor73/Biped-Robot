@@ -1,21 +1,15 @@
 # Biped-Robot
-## Temas memoria de título
+## Temas
 1.- Modelación y generación de un gemelo virtual para un robot bípedo con objetivos de entrenamientos --> René
 
-2.- Integración y caracterización electromecánica de un robot bípedo --> Basti
+2.- Diseño e integración electromecánica de un robot bípedo --> Basti
 
 3.- Diseño e integración de sensores/cámaras para uso en ..... (sujeto a industria) --> Nico
 
 4.- Control de estabilidad y movimiento .........--> Matias
 
-5.- Generación de interfaces y/o sistema operativo para comunicación entre CPU-MIC-ACT-Users
+5.- Generación de interfaces y sistema operativo (ROS) para comunicación entre CPU-Microcontrolador-Actuadores-Usuario
 
-6.- Propuesta......
-## Proyectos Electrónicos
-Nicolás: Cuerpo y chasis
+6.- Estabilización del robot mediante Aprendizaje por Refuerzo
 
-René: Microcontroladores
-
-Matías: Piernas y movimientos
-
-Bastián: Actuadores
+7.- Diselo e implementación de sistemas electrónicos (PCB) para energía, comunicaciones y sistemas de control
