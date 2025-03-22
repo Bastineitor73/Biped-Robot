@@ -8,8 +8,8 @@
 
 4.- Control de estabilidad y movimiento .........--> Matias
 
-5.- Generación de interfaces y sistema operativo (ROS) para comunicación entre CPU-Microcontrolador-Actuadores-Usuario
+5.- Generación de interfaces y sistema operativo (ROS) para comunicación entre CPU-Micro-Actuad-Usuario
 
 6.- Estabilización del robot mediante Aprendizaje por Refuerzo
 
-7.- Diselo e implementación de sistemas electrónicos (PCB) para energía, comunicaciones y sistemas de control
+7.- Diseño e implementación de sistemas electrónicos (PCB) para energía, comunicaciones y sistemas de control
