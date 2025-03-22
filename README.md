@@ -14,4 +14,4 @@
 
 7.- Diseño e implementación de sistemas electrónicos (PCB) para energía, comunicaciones y sistemas de control
 
-![image](https://github.com/user-attachments/assets/be2ff7f6-b1ef-4cc5-81de-65e88731eb88)
+![Software y Comunicación](https://github.com/user-attachments/assets/26a63348-8edc-45db-a534-23719b4401ff)
