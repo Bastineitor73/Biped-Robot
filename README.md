@@ -10,7 +10,7 @@
 </p>
 
 ## Temas
-1.- Modelación y generación de un gemelo virtual para un robot bípedo con objetivos de entrenamientos --> René Pezo
+1.- Modelación y generación de un gemelo virtual para un robot bípedo con objetivos de entrenamientos
 
 2.- Diseño e integración electromecánica del robot bípedo --> Bastian Inostroza
 
