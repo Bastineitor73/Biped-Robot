@@ -12,7 +12,7 @@
 ## Temas
 1.- Modelación y generación de un gemelo virtual para un robot bípedo con objetivos de entrenamientos --> René Pezo
 
-2.- Diseño e integración electromecánica de un robot bípedo --> Bastian Inostroza
+2.- Diseño e integración electromecánica del robot bípedo --> Bastian Inostroza
 
 3.- Implementación de sensores/cámaras para uso en ..... (sujeto a industria) --> Nicolás Vergara
 
