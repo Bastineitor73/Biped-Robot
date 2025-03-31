@@ -33,6 +33,6 @@
 
 
 ## Presupuesto
-Link Excel: https://udeconce-my.sharepoint.com/:x:/g/personal/bainostroza2020_udec_cl/EdKPUSvQOPhJjjog2VPkuQUBWDiJYoLg8gLWuiB_wX_ShQ?e=4iyIeJ
+Link Excel: ........
 
 
