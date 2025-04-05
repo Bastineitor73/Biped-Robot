@@ -10,7 +10,7 @@
 <img src="https://github.com/user-attachments/assets/141a9832-9bc6-4b72-bd28-e63e6d6cea64" width="200" height="200"/>
 
 ## Cámara Intel RealSense D435i
-<img src="https://github.com/user-attachments/assets/78c0d0d9-ff89-48b4-bf28-c2d4bce045f8" width="200" height="200"/>
+<img src="https://github.com/user-attachments/assets/78c0d0d9-ff89-48b4-bf28-c2d4bce045f8" width="260" height="200"/>
 
 
 
