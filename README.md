@@ -34,5 +34,5 @@
 ![Diagrama en blanco (17)](https://github.com/user-attachments/assets/47a211d8-2c7c-4dad-bea7-29cc96dd2564)
 
 ## Avances
-[INSERTAR VIDEOS]
+https://github.com/user-attachments/assets/40af3590-736d-49cf-ba23-6079eba7bc6d
 
