@@ -16,7 +16,7 @@
 - 22.2V
 - 6 celdas
 - 5000 mAh
-<img src="https://github.com/user-attachments/assets/45b2fd79-04fc-4352-9bf7-c38c8f107c51" width="300" height="200"/>
+<img src="https://github.com/user-attachments/assets/45b2fd79-04fc-4352-9bf7-c38c8f107c51" width="400" height="300"/>
 
 
 
