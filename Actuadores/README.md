@@ -15,5 +15,14 @@ Driver de control de motores, utilizados para manejar los 6 actuadores del robot
 
 
 ## Motor Eaglepower
+Músculos principales del robot, cada motor (6 en total) son montados en 2 piernas (3 en cada una) por medio de una caja reductora de relación 9:1, amplificando así el torque de cada actuador.
+- 90KV
+- 40 polos
 
 <img src="https://images.ctfassets.net/2lpsze4g694w/6NM18r4P4ldZgZr329H73y/f79b29f40418a0ce56fa5d9f389850d9/Screenshot_2024-04-12_at_09.10.15.png" width="300" height="300"/>
+
+![image](https://github.com/user-attachments/assets/e6acf12d-7f79-43c7-8a32-672ad6c2c897)
+
+
+
+
