@@ -1,6 +1,9 @@
 # Materiales
+
 ##Placa de fibra de carbono 
+
 200x250mmx2mm
+
 ![image](https://github.com/user-attachments/assets/1538a2e6-bcad-4e47-8fb5-e46819bb5d54)
 
 ##Tubos de Fibra de carbono
