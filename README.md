@@ -27,12 +27,9 @@
 
    ![Software y Comunicación](https://github.com/user-attachments/assets/26a63348-8edc-45db-a534-23719b4401ff)
 
+## Diseño Conceptual
+[INSERTAR DIBUJO]
+
 ## Diagrama Eléctrico
 ![Diagrama en blanco (17)](https://github.com/user-attachments/assets/47a211d8-2c7c-4dad-bea7-29cc96dd2564)
-
-
-
-## Presupuesto
-Link Excel: ........
-
 
