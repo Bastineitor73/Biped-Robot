@@ -1,4 +1,4 @@
-#Lista de Dispositivos
+# Lista de Dispositivos
 
 ## Odrive S1
 Driver de control de motores, utilizados para manejar los 6 actuadores del robot utilizando comunicación CAN.
@@ -7,8 +7,11 @@ Driver de control de motores, utilizados para manejar los 6 actuadores del robot
 - Modos de Control: Torque, Velocidad, Posición y Trayectoria
 - Incluye encoder magnético MA702
 - Peso: 35g
+- Datasheet: https://docs.odriverobotics.com/v/latest/hardware/s1-datasheet.html
   
 <img src="https://shop.odriverobotics.com/cdn/shop/files/PXL_20221103_003855089.jpg?v=1705544744&width=823" width="300" height="300"/>
+
+
 
 
 ## Motor Eaglepower
