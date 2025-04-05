@@ -31,7 +31,7 @@
 [INSERTAR DIBUJO]
 
 ## Diagrama Eléctrico
-<img src="https://github.com/user-attachments/assets/47a211d8-2c7c-4dad-bea7-29cc96dd2564" width="400" height="400"/>
+<img src="https://github.com/user-attachments/assets/47a211d8-2c7c-4dad-bea7-29cc96dd2564" width="600" height="400"/>
 
 ## Avances
 https://github.com/user-attachments/assets/40af3590-736d-49cf-ba23-6079eba7bc6d
