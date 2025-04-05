@@ -12,7 +12,8 @@
 ## Cámara Intel RealSense D435i
 <img src="https://github.com/user-attachments/assets/78c0d0d9-ff89-48b4-bf28-c2d4bce045f8" width="500" height="200"/>
 
-
+## Batería Lipo 22.2v 6S 5000 mAh
+<img src="https://github.com/user-attachments/assets/45b2fd79-04fc-4352-9bf7-c38c8f107c51" width="300" height="200"/>
 
 
 
