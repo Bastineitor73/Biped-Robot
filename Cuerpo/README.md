@@ -11,5 +11,6 @@
 - 12x10mm largo 500mm (x2)
 - 28x26mm largo 500mm (x2)
 
-![image](https://github.com/user-attachments/assets/4037b635-9dcd-4175-952e-241bedf02a09)
+<img src="https://github.com/user-attachments/assets/4037b635-9dcd-4175-952e-241bedf02a09" width="300" height="300"/>
+
 
