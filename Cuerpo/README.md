@@ -1,7 +1,7 @@
 # Materiales
 
 ## Filamento PLA
-<img src="https://github.com/user-attachments/assets/6912c255-06fa-4d08-a269-ade59f7230c9"/>
+<img src="https://github.com/user-attachments/assets/6912c255-06fa-4d08-a269-ade59f7230c9" width="300" height="300"/>
 
 ## Placa de fibra de carbono 
 - 200x250mmx2mm
