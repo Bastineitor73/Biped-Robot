@@ -36,6 +36,7 @@
 ## Avances
 https://github.com/user-attachments/assets/40af3590-736d-49cf-ba23-6079eba7bc6d
 
-![WhatsApp Image 2025-04-06 at 2 51 33 AM](https://github.com/user-attachments/assets/881fbd66-f30a-4e79-b000-5c5069408fe5)
+![WhatsApp Image 2025-04-06 at 2 59 53 AM](https://github.com/user-attachments/assets/e494b423-b27f-48e9-b050-72f6bc5f2338)
+
 
 
