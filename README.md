@@ -34,9 +34,10 @@
 <img src="https://github.com/user-attachments/assets/47a211d8-2c7c-4dad-bea7-29cc96dd2564" width="900" height="500"/>
 
 ## Avances
-https://github.com/user-attachments/assets/40af3590-736d-49cf-ba23-6079eba7bc6d
-
-![WhatsApp Image 2025-04-06 at 2 59 53 AM](https://github.com/user-attachments/assets/e494b423-b27f-48e9-b050-72f6bc5f2338)
+<p align="center">
+  <video src="https://github.com/user-attachments/assets/40af3590-736d-49cf-ba23-6079eba7bc6d" width="400" controls></video>
+  <img src="https://github.com/user-attachments/assets/e494b423-b27f-48e9-b050-72f6bc5f2338" width="400">
+</p>
 
 
 
