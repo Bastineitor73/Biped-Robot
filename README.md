@@ -20,9 +20,15 @@
 
 5.- Generación de interfaces y sistema operativo (ROS) para comunicación entre CPU-Micro-Actuad-Usuario
 
-6.- Estabilización del robot mediante Aprendizaje por Refuerzo
+6.- Estabilización del robot mediante Aprendizaje por Refuerzo (sujeto a 1)
 
-7.- Diseño e implementación de sistemas electrónicos (PCB) para energía, comunicaciones y sistemas de control
+7.- Sistemas de conexión, electrónica de potencia y análisis de eficiencias energéticas --> Alonso Garrido
+
+8.- Diseño e implementación de sistema electrónico (PCB) centralizado para monitoreo de datos en tiempo real, comunicaciones y sistemas de control  --> Germán Inostroza
+
+9.- Estudio de esfuerzos mecánicos y diseño eficiente del robot
+
+10.- Diseño de sistema de control remoto por medio de RF/Wifi/Bluetooth 
 
 
    ![Software y Comunicación](https://github.com/user-attachments/assets/26a63348-8edc-45db-a534-23719b4401ff)
