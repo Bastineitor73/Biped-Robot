@@ -29,12 +29,22 @@
 <img src="https://github.com/user-attachments/assets/47a211d8-2c7c-4dad-bea7-29cc96dd2564" width="900" height="500"/>
 
 ## Avances
-![WhatsApp Image 2025-04-06 at 2 59 53 AM](https://github.com/user-attachments/assets/e494b423-b27f-48e9-b050-72f6bc5f2338)
 
-<img width="1024" height="1536" alt="Robot Bípedo" src="https://github.com/user-attachments/assets/31138796-6937-4797-b28f-e03662365437" />
+<table>
+  <tr>
+    <td>
+      <img width="300" src="https://github.com/user-attachments/assets/548ba821-cb57-4b81-bd61-f4bb0e88f3e7" />
+    </td>
+    <td>
+      <img width="300" src="https://github.com/user-attachments/assets/31138796-6937-4797-b28f-e03662365437" />
+    </td>
+  </tr>
+</table>
 
-
-https://github.com/user-attachments/assets/40af3590-736d-49cf-ba23-6079eba7bc6d
+<video width="640" controls>
+  <source src="assets/demo.mp4" type="video/mp4">
+  Tu navegador no soporta video HTML5.
+</video>
 
 
 
