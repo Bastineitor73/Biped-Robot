@@ -31,6 +31,9 @@
 ## Avances
 ![WhatsApp Image 2025-04-06 at 2 59 53 AM](https://github.com/user-attachments/assets/e494b423-b27f-48e9-b050-72f6bc5f2338)
 
+<img width="1024" height="1536" alt="Robot Bípedo" src="https://github.com/user-attachments/assets/31138796-6937-4797-b28f-e03662365437" />
+
+
 https://github.com/user-attachments/assets/40af3590-736d-49cf-ba23-6079eba7bc6d
 
 
