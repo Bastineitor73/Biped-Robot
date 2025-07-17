@@ -41,11 +41,7 @@
   </tr>
 </table>
 
-<video width="640" controls>
-  <source src="assets/demo.mp4" type="video/mp4">
-  Tu navegador no soporta video HTML5.
-</video>
-
+https://github.com/user-attachments/assets/344ce4eb-d846-4b8e-a158-e9851668d182
 
 
 
