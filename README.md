@@ -23,7 +23,7 @@
    ![Software y Comunicación](https://github.com/user-attachments/assets/26a63348-8edc-45db-a534-23719b4401ff)
 
 ## Diseño Conceptual
-[INSERTAR DIBUJO]
+<img width="300" src="https://github.com/user-attachments/assets/31138796-6937-4797-b28f-e03662365437" />
 
 ## Diagrama Eléctrico
 <img src="https://github.com/user-attachments/assets/47a211d8-2c7c-4dad-bea7-29cc96dd2564" width="900" height="500"/>
