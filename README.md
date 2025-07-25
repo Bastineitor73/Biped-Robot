@@ -31,7 +31,7 @@
 ## Avances
 <img width="300" src="https://github.com/user-attachments/assets/548ba821-cb57-4b81-bd61-f4bb0e88f3e7" />
 
-https://github.com/user-attachments/assets/344ce4eb-d846-4b8e-a158-e9851668d182
+[https://github.com/user-attachments/assets/344ce4eb-d846-4b8e-a158-e9851668d182](https://github.com/user-attachments/assets/149b1f66-dc8b-4094-9f17-feb6b6dd1998)
 
 
 
