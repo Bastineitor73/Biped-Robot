@@ -26,7 +26,7 @@
 <img width="300" src="https://github.com/user-attachments/assets/31138796-6937-4797-b28f-e03662365437" />
 
 ## Diagrama Eléctrico
-<img src="https://github.com/user-attachments/assets/47a211d8-2c7c-4dad-bea7-29cc96dd2564" width="900" height="500"/>
+<img src="https://github.com/user-attachments/assets/15a48919-b9d2-4e21-aa56-cf748ae892a8" width="900" height="500"/>
 
 ## Avances
 <img width="300" src="https://github.com/user-attachments/assets/548ba821-cb57-4b81-bd61-f4bb0e88f3e7" />
