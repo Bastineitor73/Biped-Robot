@@ -23,7 +23,7 @@
    ![Software y Comunicación](https://github.com/user-attachments/assets/26a63348-8edc-45db-a534-23719b4401ff)
 
 ## Diseño Conceptual
-<img width="900" height="600" alt="Dibujo Final Robot Bípedo" src="https://github.com/user-attachments/assets/70bff7e5-fe32-4eb1-8f57-ec5d9883c168" />
+<img width="400" height="500" alt="Dibujo Final Robot Bípedo" src="https://github.com/user-attachments/assets/70bff7e5-fe32-4eb1-8f57-ec5d9883c168" />
 
 ## Diagrama Eléctrico
 <img src="https://github.com/user-attachments/assets/5943e165-8335-4059-8caa-351949f14cfb" width="782" height="496"/>
