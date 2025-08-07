@@ -1,0 +1,50 @@
+#############################
+#	Data Types - LITERAL1	#
+#############################
+
+HeartbeatMsg_t	LITERAL1
+EncoderEstimatesMsg_t	LITERAL1
+EncoderCountsMsg_t	LITERAL1
+IqMsg_t	LITERAL1
+SensorlessEstimatesMsg_t	LITERAL1
+
+#############################
+#	Functions - KEYWORD2	#
+#############################
+
+ReadMsg	KEYWORD2
+Heartbeat	KEYWORD2
+SetAxisNodeId	KEYWORD2
+SetControllerModes	KEYWORD2
+SetTrajVelLimit	KEYWORD2
+SetTrajAccelLimits	KEYWORD2
+SetTrajInertia	KEYWORD2
+SetPosition	KEYWORD2
+SetVelocity	KEYWORD2
+SetTorque	KEYWORD2
+SetLimits	KEYWORD2
+SetLinearCount	KEYWORD2
+SetPositionGain	KEYWORD2
+SetVelocityGains	KEYWORD2
+GetPositionVelocity	KEYWORD2
+GetEncoderCounts	KEYWORD2
+GetIq	KEYWORD2
+GetSensorlessEstimates	KEYWORD2
+GetMotorError	KEYWORD2
+GetEncoderError	KEYWORD2
+GetControllerError	KEYWORD2
+GetVbusVoltage	KEYWORD2
+GetADCVoltage	KEYWORD2
+Estop	KEYWORD2
+StartAnticogging	KEYWORD2
+RebootOdrive	KEYWORD2
+ClearErrors	KEYWORD2
+RunState	KEYWORD2
+
+
+#############################
+#	Instances - KEYWORD1	#
+#############################
+
+ODriveTeensyCAN	KEYWORD1
+
