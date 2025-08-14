@@ -27,9 +27,12 @@ Interacción de los componentes
 - Monitor MP2790
 - Fuel Gauge MPF42795
 - Comunicacion por I2C con librería "MP27XX.h"
-<img src="https://github.com/Bastineitor73/Biped-Robot/blob/main/Electr%C3%B3nica/PCB_Monitor_baterias/PCB_MP2790.png" width="350" height="300"/>
-- Placa accesoria para 
+<img src="https://github.com/Bastineitor73/Biped-Robot/blob/main/Electr%C3%B3nica/PCB_Monitor_baterias/PCB_MP2790.png" width="300" height="300"/>
+- Placa accesoria para llave de paso MOS
 <img src="https://github.com/Bastineitor73/Biped-Robot/blob/main/Electr%C3%B3nica/PCB_Monitor_baterias/PCB_MOS.png" width="100" height="150"/>
+- Placa accesoria UI Medidor de combustible
+<img src="https://github.com/Bastineitor73/Biped-Robot/blob/main/Electr%C3%B3nica/PCB_Monitor_baterias/PCB_LED.png" width="200" height="150"/>
+
 
 ## Placa de alimentacion
 - Conversor buck TPS54531 5V @25W
