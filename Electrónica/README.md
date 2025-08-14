@@ -31,7 +31,7 @@ Interacción de los componentes
 - Placa accesoria para llave de paso MOS
 <img src="https://github.com/Bastineitor73/Biped-Robot/blob/main/Electr%C3%B3nica/PCB_Monitor_baterias/PCB_MOS.png" width="100" height="150"/>
 - Placa accesoria UI Medidor de combustible
-<img src="https://github.com/Bastineitor73/Biped-Robot/blob/main/Electr%C3%B3nica/PCB_Monitor_baterias/PCB_LED.png" width="150" height="150"/>
+<img src="https://github.com/Bastineitor73/Biped-Robot/blob/main/Electr%C3%B3nica/PCB_Monitor_baterias/PCB_LED.png" width="250" height="250"/>
 
 
 ## Placa de alimentacion
