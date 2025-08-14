@@ -1,7 +1,7 @@
 # Software B1P0
 
 ## Rutina principal
-<img src="https://github.com/Bastineitor73/Biped-Robot/blob/main/Software%20y%20Comunicaci%C3%B3n/Diagrama_FSM.drawio.png" width="600" height="400"/>
+<img src="https://github.com/Bastineitor73/Biped-Robot/blob/main/Software%20y%20Comunicaci%C3%B3n/Diagrama_FSM.drawio.png" width="500" height="300"/>
 
 ## Libreria MP2790
 - 144 Direcciones en #define
