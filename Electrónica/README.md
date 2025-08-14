@@ -20,7 +20,8 @@
 
 # Desarollo PCB's
 Interacción de los componentes
-<img src="https://github.com/Bastineitor73/Biped-Robot/blob/main/Electr%C3%B3nica/Esquema.png" width="400" height="300"/>
+
+<img src="https://github.com/Bastineitor73/Biped-Robot/blob/main/Electr%C3%B3nica/Esquema.png" width="800" height="600"/>
 
 ## Monitor de bateria y Medidor de combustible
 - Monitor MP2790
