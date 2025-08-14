@@ -1,4 +1,4 @@
-# Lista de Dispositivos
+<img width="902" height="416" alt="Esquema" src="https://github.com/user-attachments/assets/bc4815bc-9fe7-465b-8fab-8193c8acdd03" /># Lista de Dispositivos
 
 ## Microcontrolador Teensy 4.1
 <img src="https://github.com/user-attachments/assets/4eb4f574-3eb5-4b48-ad55-5640e57f75cd" width="200" height="200"/>
@@ -18,5 +18,20 @@
 - 5000 mAh
 <img src="https://github.com/user-attachments/assets/45b2fd79-04fc-4352-9bf7-c38c8f107c51" width="400" height="300"/>
 
+# Desarollo PCB's
+Interacción de los componentes
+<img src="https://github.com/Bastineitor73/Biped-Robot/blob/main/Electr%C3%B3nica/Esquema.png" width="400" height="300"/>
 
+## Monitor de bateria y Medidor de combustible
+- Monitor MP2790
+- Fuel Gauge MPF42795
+- Comunicacion por I2C con librería "MP27XX.h"
+<img src="https://github.com/Bastineitor73/Biped-Robot/blob/main/Electr%C3%B3nica/PCB_Monitor_baterias/PCB_MP2790.png" width="400" height="300"/>
+- Placa accesoria para 
+<img src="https://github.com/Bastineitor73/Biped-Robot/blob/main/Electr%C3%B3nica/PCB_Monitor_baterias/PCB_MOS.png" width="400" height="300"/>
+
+## Placa de alimentacion
+- Conversor buck TPS54531 5V @25W
+- Regulador lineal TLV757p 3V3 @3W
+<img src="https://github.com/Bastineitor73/Biped-Robot/blob/main/Electr%C3%B3nica/PCB_Riel_5_3v3/PCB_POWER.png" width="400" height="300"/>
 
