@@ -1,4 +1,4 @@
-<img width="902" height="416" alt="Esquema" src="https://github.com/user-attachments/assets/bc4815bc-9fe7-465b-8fab-8193c8acdd03" /># Lista de Dispositivos
+# Lista de Dispositivos
 
 ## Microcontrolador Teensy 4.1
 <img src="https://github.com/user-attachments/assets/4eb4f574-3eb5-4b48-ad55-5640e57f75cd" width="200" height="200"/>
