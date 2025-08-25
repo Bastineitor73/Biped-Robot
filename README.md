@@ -1,6 +1,6 @@
-# Biped-Robot
+# Proyecto B1P0
 ## Objetivo
-"Crear un robot bípedo estable y escalable a lo largo del tiempo desarrollado por alumnos del DIE, capaz de desenvolverse en entornos de alta dinámica"
+"Crear un robot bípedo estable y escalable a lo largo del tiempo desarrollado por alumnos del DIE, capaz de desenvolverse en entornos industriales complejos, catástrofes naturales, inspecciones y escenarios de alto riesgo humano"
 
 ## Visiones
 <p align="center">
