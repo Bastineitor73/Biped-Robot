@@ -34,7 +34,7 @@
 ## Avances
 <p align="center">
   <img src="https://github.com/user-attachments/assets/2082042d-ba07-42dc-af53-b3dd60be0df1" width="500" height="550"/>
-  <img src="https://github.com/user-attachments/assets/b80e0d6b-f3a5-4ad3-82f7-288b76549a1a" width="500" height="570"/> 
+  <img src="https://github.com/user-attachments/assets/b80e0d6b-f3a5-4ad3-82f7-288b76549a1a" width="500" height="600"/> 
 </p>
 
 [https://github.com/user-attachments/assets/344ce4eb-d846-4b8e-a158-e9851668d182](https://github.com/user-attachments/assets/149b1f66-dc8b-4094-9f17-feb6b6dd1998)
