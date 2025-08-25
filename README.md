@@ -5,7 +5,7 @@
 ## Visiones
 <p align="center">
   <img src="https://github.com/user-attachments/assets/a027199c-404f-4b3b-92d3-a6849c4f1104" width="300" height="300"/>
-  <img src="https://github.com/user-attachments/assets/7b1f231d-dbb5-4ebf-ae51-a41ceecbbe9e" width="250" height="280"/>
+  <img src="https://github.com/user-attachments/assets/7b1f231d-dbb5-4ebf-ae51-a41ceecbbe9e" width="270" height="300"/>
   <img src="https://github.com/user-attachments/assets/7e9c38a3-365e-46b8-b8cd-3efd348a5929" width="300" height="250"/>
 </p>
 
