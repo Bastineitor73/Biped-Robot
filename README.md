@@ -1,5 +1,5 @@
 # Proyecto B1P0
-<img src="https://github.com/user-attachments/assets/24246fe2-8981-40c8-a690-1a3461429da9" width="782" height="496"/>
+<img src="https://github.com/user-attachments/assets/24246fe2-8981-40c8-a690-1a3461429da9" width="500" height="500"/>
 
 ## Objetivo
 "Crear un robot bípedo estable y escalable a lo largo del tiempo desarrollado por alumnos del DIE, capaz de desenvolverse en entornos industriales complejos, catástrofes naturales, inspecciones y escenarios de alto riesgo humano"
