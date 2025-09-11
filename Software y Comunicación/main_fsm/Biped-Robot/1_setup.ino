@@ -1,9 +1,19 @@
 void setup() {
   //Initialize serial and wait for port to open:
-  Serial.begin(38400);
-  while (!Serial) {
-  ; // wait for serial port to connect. Needed for native USB port only
-  } 
+  Serial.begin(9600);
+  while (!Serial && millis() < 2000) { //wait for USB w/ init
+  }
+
+  //GPIO
+  pinMode(BUTTON_PIN, INPUT_PULLUP); //Log
+
+  // SD card
+  Serial.print("SD card ");
+  if (SD.begin(BUILTIN_SDCARD)) {
+    Serial.println("initialized.");
+  } else {
+    Serial.println("init failed!");
+  }
 
   //Initialize Wire/I2C
   #if I2CDEV_IMPLEMENTATION == I2CDEV_ARDUINO_WIRE
@@ -19,6 +29,8 @@ void setup() {
     robotMode = isAlert;
   }
 
+  // Syncing RTC
+  Serial.write(7);  //7: ASCII value for time request
 
 
 
