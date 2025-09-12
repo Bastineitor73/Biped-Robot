@@ -1,0 +1,514 @@
+#include <Arduino.h>
+#include <FlexCAN_T4.h>        // <–– esto debe estar
+#include <ODriveTeensyCAN.h>
+#include <Wire.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_SSD1306.h>
+#define SCREEN_WIDTH  128
+#define SCREEN_HEIGHT  64
+#define OLED_RESET    -1          // reset por software (GPIO no usado)
+
+#define LOGO_WIDTH  84
+#define LOGO_HEIGHT 52
+#define BUZZER_PIN 6
+#define PIN_BOTON 15
+//#include <Keyboard.h>
+
+ODriveTeensyCAN odriveCAN(250000);  // Configuración CAN
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
+
+const int melody[] = { 262, 294, 330, 349, 330, 294, 262 };   // C4–D4–E4–F4–E4–D4–C4
+const int noteDurations[] = { 200, 200, 200, 200, 200, 200, 400 };
+const int melodyLength = sizeof(melody) / sizeof(melody[0]);
+
+const int melodyHigh[] = { 392, 440, 494, 523, 494, 440, 392 };
+const int noteDurationsHigh[] = { 150, 150, 150, 200, 150, 150, 300 };
+const int melodyHighLength = sizeof(melodyHigh) / sizeof(melodyHigh[0]);
+
+const unsigned char PROGMEM logo[] = {
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x10, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x38, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xf0, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x05, 0x80, 0x00, 0x00, 0x00, 0x00, 0x01, 0xf0, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x05, 0x80, 0x00, 0x00, 0x00, 0x00, 0x03, 0xe0, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00, 0x09, 0xe0, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x4f, 0x00, 0x00, 0x00, 0x00, 0x6c, 0xc0, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0xdf, 0x00, 0x00, 0x00, 0x03, 0xce, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0xde, 0x1c, 0x00, 0x00, 0x0f, 0xdf, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x58, 0x9f, 0x10, 0x0f, 0xc7, 0xde, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0x9e, 0x1f, 0x3f, 0x97, 0xde, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x0f, 0xbc, 0x9e, 0x3f, 0xb3, 0xd8, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x0f, 0xb9, 0xde, 0xbf, 0x3b, 0x90, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xb3, 0xdd, 0x9f, 0x79, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0xa7, 0xd9, 0xdf, 0x7d, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0f, 0xdb, 0xde, 0xfe, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1f, 0xd3, 0xde, 0xf8, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xc7, 0xec, 0xe0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x07, 0xec, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+
+
+struct MotorConfig {          //Estructura de Configuración
+  uint8_t node_id;            // Node ID en el bus CAN 
+  float pos_a;                // Posición 1 (vueltas)
+  float pos_b;                // Posición 2 (vueltas)
+  float current_target;       // Último objetivo enviado
+  unsigned long lastMoveTime; // Último cambio
+  unsigned long intervalo_ms; // Intervalo entre movimientos
+  float last_position_deg;    // Última posición en grados
+  float last_current_A;       // Última corriente
+};
+
+struct frameOLA{
+  char fecha[11];
+  char hora[11];
+  float accX, accY, accZ;
+  float gyroX, gyroY, gyroZ;
+  float magX, magY, magZ;
+  float temp;
+  float freq;
+} data;
+
+constexpr int Buff_len = 128;
+char Buff[Buff_len];
+
+
+MotorConfig motores[] = {
+  {0, 0.0, 3.5, 0.0, 0, 4000, 0.0, 0.0},        // Motor con Node ID 0
+  {1, 0.0, -3, 0.0, 0, 4000, 0.0, 0.0},      // Motor con Node ID 1
+  {2, 0.0, -0.8, 0.0, 0, 4000, 0.0, 0.0},       // Motor con Node ID 2
+  {3, 0.0, 0.7, 0.0, 0, 4000, 0.0, 0.0}         // Motor con Node ID 3
+  //        
+};
+
+const int num_motores = sizeof(motores) / sizeof(MotorConfig);
+const int espera = 900;
+
+// Variables de control de estado
+enum Estado { MENU, EJECUTANDO, DETENIENDO };
+Estado estado = MENU;
+char rutina_seleccionada = 0;
+bool detener_rutina = false;
+2
+
+//Botones e IMU
+bool modoIMU = false;               // false: muestra imagen, true: muestra datos
+bool lastNivel = HIGH;             // Para detectar flanco
+bool ignorarPrimerCambio = true;   // Para evitar falsos positivos al arranque
+unsigned long tUltimoCambio = 0;
+const unsigned long DEBOUNCE_MS = 150;
+
+void setup() {
+  //Keyboard.begin();
+  Serial.begin(115200);
+  Serial2.begin(115200);         // UART2 (pines 7-8)
+  while (!Serial2);
+  while (!Serial);        // Espera conexión serial (Teensy)
+  // Configura el Serial para lectura inmediata
+  Serial.setTimeout(1);  // Timeout muy corto para lectura
+
+  pinMode(PIN_BOTON, INPUT_PULLUP);  // Botón con lógica inversa (LOW = presionado)
+  Wire1.begin();                  // inicia bus I²C en pins 17/16
+  Wire1.setClock(400000);         // 400 kHz (rápido y estable)
+
+  if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) { // dirección 0x3C
+    while (true) {
+      // Si falla, parpadea el LED integrado
+      digitalToggle(LED_BUILTIN);
+      delay(200);
+    }
+  }
+
+  //Se muestra sonrisa inicial
+  display.clearDisplay();
+  display.drawBitmap(0,0,logo,128,64,WHITE);
+  display.display();
+
+  //Setear cada motor en lazo cerrado y verificar
+  for (int i = 0; i < num_motores; i++) {
+    bool ok = odriveCAN.RunState(motores[i].node_id, 8);    // Closed-loop
+    if (ok) {       //Si se logró el seteo (ok = True)
+      //Serial.print("Axis ");
+      //Serial.print(motores[i].node_id);
+      //Serial.println(" en modo cerrado OK.");
+    } else {
+      Serial.print("Error en Axis ");
+      Serial.println(motores[i].node_id);
+    }
+  }
+  Serial.println("Sistema iniciado.");
+  Serial.println("Seleccione un modo:");
+  Serial.println("[1] Axis Tests");
+  Serial.println("[2] Walking On Sunshine");
+  Serial.println("[3] Modo Manual");
+  Serial.println("Para visualizar datos de IMU ingrese [9]");
+
+  Serial.println("Para detener una rutina en ejecución, presione [s] y Enter.");
+}
+
+void loop() {
+  size_t n = Serial2.readBytesUntil('\n', Buff, Buff_len - 1);
+  if (n > 0) {
+    Buff[n] = '\0';
+  } else {
+    Buff[0] = '\0';
+  }
+  // 2) Parseo de los datos recién leídos
+  parsearIMU();
+
+  if (modoIMU) {
+    visualizarIMU(); 
+  }
+
+  leerErroresCAN();
+  if (estado == MENU) {
+    if (Serial.available() > 0) {
+      char c = Serial.read();
+      if (c == '1') {
+        playMelody(); 
+        rutina_seleccionada = '1';
+        estado = EJECUTANDO;
+      } else if (c == '2') {
+        playHighMelody();
+        rutina_seleccionada = '2';
+        estado = EJECUTANDO;
+      } else if (c == '3'){
+        rutina_seleccionada = '3';
+        estado = EJECUTANDO;
+      } else if (c == '9') {
+        // Alterna la bandera
+        modoIMU = !modoIMU;
+        // Si volvemos a carita, la dibujamos de una vez
+        if (!modoIMU) {
+          mostrarSonrisa();
+        }
+      }
+    }
+  }
+
+  else if (estado == EJECUTANDO) {
+    detener_rutina = false;
+    if (rutina_seleccionada == '1') {
+      Rutina_A();
+    } 
+    else if (rutina_seleccionada == '2') {
+      Rutina_B();
+    }
+    else if (rutina_seleccionada == '3') {
+      manualControl();
+    }
+
+    // Al terminar, volver a posiciones originales
+    Serial.println(">> Volviendo a posición original...");
+    moverMotoresAPosicionInicial();
+    estado = MENU;
+    rutina_seleccionada = 0;
+    Serial.println(" ");
+    Serial.println("Seleccione un modo:");
+    Serial.println("[1] Axis Tests");
+    Serial.println("[2] Walking On Sunshine");
+    Serial.println("[3] Modo Manual");
+    Serial.println("Para visualizar datos de IMU ingrese [9]");
+    Serial.println("Para detener una rutina en ejecución, presione [s] y Enter.");
+  }
+  delay(10);
+}
+
+// Rutina A: igual a la que ya tienes, pero chequea si hay stop
+void Rutina_A() {
+  Serial.println(">> Ejecutando Axis Tests...");
+  for (int m = 0; m < num_motores; m++) {
+    if (checkearStop()) return;
+    odriveCAN.SetPosition(motores[m].node_id, motores[m].pos_a);
+    esperarConInterrupcion(espera);
+    if (checkearStop()) return;
+    odriveCAN.SetPosition(motores[m].node_id, motores[m].pos_b);
+    esperarConInterrupcion(espera);
+    if (checkearStop()) return;
+    odriveCAN.SetPosition(motores[m].node_id, motores[m].pos_a);
+    esperarConInterrupcion(espera);
+  }
+  //Serial.println(">> Modo completado.");
+}
+
+// Rutina B: Simular caminata
+void Rutina_B() {
+  Serial.println(">> Ejecutando Walking On Sunshine...");
+  for (int contador = 0; contador < 10; contador++){
+    //Mover Pierna Izquierda
+    odriveCAN.SetPosition(motores[0].node_id, motores[0].pos_b);  // Posición objetivo
+    esperarConInterrupcion(100);
+    odriveCAN.SetPosition(motores[2].node_id, motores[2].pos_b);  // Posición objetivo
+    esperarConInterrupcion(800);
+    odriveCAN.SetPosition(motores[0].node_id, 1);  // Regreso a inicial
+    esperarConInterrupcion(20);
+    odriveCAN.SetPosition(motores[2].node_id, motores[2].pos_a);  // Regreso a inicial
+
+    esperarConInterrupcion(10);
+
+    //Mover Pierna Derecha
+    odriveCAN.SetPosition(motores[1].node_id, motores[1].pos_b);  // Posición objetivo
+    esperarConInterrupcion(100);
+    odriveCAN.SetPosition(motores[3].node_id, motores[3].pos_b);  // Posición objetivo
+    esperarConInterrupcion(800);
+    odriveCAN.SetPosition(motores[1].node_id, -1);  // Regreso a inicial
+    esperarConInterrupcion(20);
+    odriveCAN.SetPosition(motores[3].node_id, motores[3].pos_a);  // Regreso a inicial
+  }
+  esperarConInterrupcion(espera);
+  //Serial.println(">> Modo completado");
+}
+
+
+//------------------EN REVISIÓN----------------
+//------------------NO USAR--------------------
+void manualControl() {
+  Serial.println(">> Ejecutando Modo Manual...");
+  Serial.println("Presione teclas (q,a,w,s,e,d,r,f) para mover motores. 'm' para salir.");
+  
+  // Configuración especial para lectura inmediata
+  uint32_t lastKeyTime = 0;
+  const uint16_t keyDebounceTime = 100; // ms
+  
+  while (estado == EJECUTANDO) {
+    if (Serial.available() > 0) {
+      char c = Serial.read();
+      
+      // Limpiar buffer para evitar acumulación
+      while(Serial.available() > 0) {
+        Serial.read();
+        delay(1);
+      }
+      
+      // Solo procesar si ha pasado el tiempo de debounce
+      if (millis() - lastKeyTime > keyDebounceTime) {
+        lastKeyTime = millis();
+        
+        if (c == 'm') {
+          Serial.println("Saliendo al menú...");
+          estado = MENU;
+          return;
+        }
+
+        switch (c) {
+          case 'q':
+            odriveCAN.SetPosition(motores[0].node_id, motores[0].pos_a + 0.05);
+            Serial.println("Motor 0 +0.05");
+            break;
+          case 'a':
+            odriveCAN.SetPosition(motores[0].node_id, motores[0].pos_a - 0.05);
+            Serial.println("Motor 0 -0.05");
+            break;
+          case 'w':
+            odriveCAN.SetPosition(motores[1].node_id, motores[1].pos_a - 0.05);
+            Serial.println("Motor 1 -0.05");
+            break;
+          case 's':
+            odriveCAN.SetPosition(motores[1].node_id, motores[1].pos_a + 0.05);
+            Serial.println("Motor 1 +0.05");
+            break;
+          case 'e':
+            odriveCAN.SetPosition(motores[2].node_id, motores[2].pos_a - 0.01);
+            Serial.println("Motor 2 -0.01");
+            break;
+          case 'd':
+            odriveCAN.SetPosition(motores[2].node_id, motores[2].pos_a + 0.01);
+            Serial.println("Motor 2 +0.01");
+            break;
+          case 'r':
+            odriveCAN.SetPosition(motores[3].node_id, motores[3].pos_a + 0.01);
+            Serial.println("Motor 3 +0.01");
+            break;
+          case 'f':
+            odriveCAN.SetPosition(motores[3].node_id, motores[3].pos_a - 0.01);
+            Serial.println("Motor 3 -0.01");
+            break;
+          default:
+            break;
+        }
+      }
+    }
+    delay(1); // Pequeña pausa para no saturar
+  }
+}
+
+void esperarConInterrupcion(unsigned long ms) {
+  unsigned long start = millis();
+  while (millis() - start < ms) {
+    if (Serial.available() > 0 && Serial.read() == 's') {
+      Serial.println("Rutina detenida por el usuario.");
+      detener_rutina = true;
+      break;
+    }
+    delay(10);  // Evita saturar el micro
+  }
+}
+
+bool checkearStop() {
+  if (detener_rutina) {
+    Serial.println("Deteniendo rutina, saliendo...");
+    return true;
+  }
+  return false;
+}
+
+// Mueve todos los motores a pos_a (posición original)
+void moverMotoresAPosicionInicial() {
+  for (int i = 0; i < num_motores; i++) {
+    odriveCAN.SetPosition(motores[i].node_id, motores[i].pos_a);
+    delay(100);  // espera a que todos lleguen, ajusta según necesidad
+  }
+}
+
+
+// --- Función de errores CAN ---
+void leerErroresCAN() {
+  CAN_message_t msg;
+  while (odriveCAN.ReadMsg(msg)) {
+    uint8_t node_id = (msg.id >> 5);
+    if ((msg.id & 0x1F) == ODriveTeensyCAN::CMD_ID_ODRIVE_HEARTBEAT_MESSAGE) {
+      HeartbeatMsg_t hb;
+      odriveCAN.Heartbeat(hb, msg);
+      if (hb.axisError != 0) {
+        Serial.print("ERROR Axis ");
+        Serial.print(node_id);
+        Serial.print(": axisError = 0x");
+        Serial.println(hb.axisError, HEX);
+      }
+    }
+  }
+}
+
+void parsearIMU() {
+  // Lista de punteros a los campos float dentro de 'data'
+  float *variables[] = {
+    &data.accX, &data.accY, &data.accZ,
+    &data.gyroX, &data.gyroY, &data.gyroZ,
+    &data.magX,  &data.magY,  &data.magZ,
+    &data.temp,  &data.freq
+  };
+
+  // Primer token: fecha
+  char *tok = strtok(Buff, ",");
+  if (tok) {
+    strlcpy(data.fecha, tok, sizeof(data.fecha));
+  }
+
+  // Segundo token: hora
+  tok = strtok(NULL, ",");
+  if (tok) {
+    strlcpy(data.hora, tok, sizeof(data.hora));
+  }
+
+  // Los siguientes 11 tokens son los valores float
+  for (int i = 0; i < 11; i++) {
+    tok = strtok(NULL, ",");
+    if (tok) {
+      *variables[i] = atof(tok);
+    }
+  }
+}
+void visualizarIMU() {
+  display.clearDisplay();
+
+  // Cabecera
+  display.setTextSize(1);
+  display.setTextColor(WHITE);
+  display.setCursor(0, 0);
+  display.print(data.fecha);
+  display.print(' ');
+  display.println(data.hora);
+
+  // Divisiones
+  display.drawRect(0, 10, SCREEN_WIDTH, SCREEN_HEIGHT - 10, WHITE);
+  display.drawLine(0, 10 + 18, SCREEN_WIDTH, 10 + 18, WHITE);
+  display.drawLine(0, 10 + 36, SCREEN_WIDTH, 10 + 36, WHITE);
+
+  // Valores IMU
+  display.setCursor(3, 15);
+  display.print(data.accX, 2); display.print(' ');
+  display.print(data.accY, 2); display.print(' ');
+  display.print(data.accZ, 2);
+
+  display.setCursor(3, 32);
+  display.print(data.gyroX, 2); display.print(' ');
+  display.print(data.gyroY, 2); display.print(' ');
+  display.print(data.gyroZ, 2);
+
+  display.setCursor(3, 50);
+  display.print(data.magX, 2); display.print(' ');
+  display.print(data.magY, 2); display.print(' ');
+  display.print(data.magZ, 2);
+
+  display.display();
+
+  tone(BUZZER_PIN, 1000);  // Tocar tono de 1000 Hz
+  delay(100);              // Esperar 0.5 segundos
+  noTone(BUZZER_PIN);      // Detener sonido
+  delay(100);              // Esperar otros 0.5 segundos
+}
+
+void mostrarSonrisa(){
+  display.clearDisplay();
+  display.drawBitmap(0,0,logo,128,64,WHITE);
+  display.display();
+}
+
+void playMelody() {
+  for (int i = 0; i < melodyLength; i++) {
+    tone(BUZZER_PIN, melody[i], noteDurations[i]);
+    delay(noteDurations[i] + 50);  // un pequeño espacio entre notas
+    noTone(BUZZER_PIN);
+  }
+}
+void playHighMelody() {
+  for (int i = 0; i < melodyHighLength; i++) {
+    tone(BUZZER_PIN, melodyHigh[i], noteDurationsHigh[i]);
+    delay(noteDurationsHigh[i] + 20);  // breve pausa entre notas
+    noTone(BUZZER_PIN);
+  }
+}
