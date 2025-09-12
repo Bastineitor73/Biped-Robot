@@ -3,9 +3,10 @@ String  version = "2025-08-16_B1P0_V.0.0.2";
 
 /*
   Proyecto BIPO
-	Alonso Garrido
 	Bastian Inostroza
-	German
+	German Inostroza
+	Alonso Garrido
+
 */
 
 /*
@@ -19,9 +20,9 @@ String  version = "2025-08-16_B1P0_V.0.0.2";
 				2               2|        |23    9
 				3               3|        |22    8
 				4               4|        |21    7
-				5               5|        |20    6
-				6               6|        |19    5
-				7               7|        |18    4
+				5               5|        |20    6     
+				6               6|        |19    5      SCL
+				7               7|        |18    4			SDA
 				8               8|        |17    3
 				9               9|        |16    2
 			 10              10|        |15    1

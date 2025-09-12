@@ -16,26 +16,19 @@ void setup() {
   }
 
   //Initialize Wire/I2C
-  #if I2CDEV_IMPLEMENTATION == I2CDEV_ARDUINO_WIRE
-  Wire.begin(); 
-  #elif I2CDEV_IMPLEMENTATION == I2CDEV_BUILTIN_FASTWIRE
-  Fastwire::setup(400, true);
-  #endif
+  Wire.setSDA(18);
+  Wire.setSCL(19);
+  Wire.begin();
 
-  //Initialize MP2790
-  MP2790 mp27 = MP2790(mp2790_address); //empty for default
-  bool mp2790Open = mp27.testConnection()
-  if(mp2790Open!){
-    robotMode = isAlert;
-  }
+  //MP2790
+
+  // Initialize interrutps
+  // bool intFlags[32];
 
   // Syncing RTC
   Serial.write(7);  //7: ASCII value for time request
 
-
-
-
-
-
+  //Check MP2790 connection
+  mpStatus = mp27.testConnection();
 
 }

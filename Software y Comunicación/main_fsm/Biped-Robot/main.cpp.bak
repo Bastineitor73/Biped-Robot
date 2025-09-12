@@ -1,4 +1,80 @@
-// Mp2790
+/*
+ * I2C MP27xx Read Write
+ *
+ * Reads the value of each byte of the I2C MP27xx and prints it
+ * to the computer.
+ * This example code is in the public domain.
+ */
+
+#include <Arduino.h>
+#include "MP2790.h"
+
+//Global Variables
+#define RED_BUTTON GPIO_NUM_14
+#define XALERT_INPUT GPIO_NUM_15
+#define BUTTON_DEBOUNCE 1000        //in milliseconds
+uint16_t mp2790_nCells = 6;         //6 cells
+uint16_t mp2790_address = 0x01;     // Default address, can be changed later
+bool mpStatus = false;
+uint8_t buttonCounter = 0;
+uint32_t lastMillis = 0;
+
+//Function declarations
+void setupMP2790();
+void setupValues();
+void checkSensors();
+void checkInt();
+void handleInt(bool *intFlags);
+
+// Initialize using MP27XX(i2c_address, number of cells).  
+MP2790 mp27 = MP2790(mp2790_address, mp2790_nCells); //empty for default
+
+// Initilize interrutps
+bool intFlags[32];
+
+void setup() {
+  //Initialize serial and wait for port to open:
+  Serial.begin(38400);
+  while (!Serial) {
+    ; // wait for serial port to connect. Needed for native USB port only
+  } 
+
+  //Initialize Wire/I2C
+  #if I2CDEV_IMPLEMENTATION == I2CDEV_ARDUINO_WIRE
+    Wire.begin(); 
+  #elif I2CDEV_IMPLEMENTATION == I2CDEV_BUILTIN_FASTWIRE
+    Fastwire::setup(400, true);
+  #endif
+
+  //Check MP2790 connection
+  mpStatus = mp27.testConnection();
+
+  //Initialize GPIO
+  pinMode(RED_BUTTON, INPUT_PULLUP);
+  pinMode(XALERT_INPUT, INPUT_PULLUP);
+}
+
+
+void loop() {
+
+  //Setup sequence when button is pressed
+  if ((digitalRead(RED_BUTTON) == LOW) && (millis() - lastMillis > BUTTON_DEBOUNCE)){
+    lastMillis = millis();
+    Serial.println("Button pressed");
+    if (buttonCounter < 1){
+      Serial.println(" initializing MP2790 Setup...");
+      setupMP2790();
+      setupValues();
+      buttonCounter++;
+      // return;
+    }
+    checkSensors();
+    checkInt();
+    if (mp27.powerStatus() == 8){
+      mp27.writeAdd(MP2790_Reg::DRIVER_FAULT_CLR, 1);
+    }
+  }
+}
 
 void setupMP2790() {
 
@@ -121,10 +197,11 @@ void setupValues(){
   mp27.writeAdd(0xA8, 0x0A21);   // BAL_THR
 
 }
+
 void checkSensors() {
 
   //Clear dead cell
-  // mp27.writeAdd(MP2790_Reg::CELL_DEAD_DET_CLEAR, 1);
+  mp27.writeAdd(MP2790_Reg::CELL_DEAD_DET_CLEAR, 1);
 
   // Read and print some sensor values
   // Temperature 
@@ -133,9 +210,9 @@ void checkSensors() {
   Serial.println(dieTemp);
   
   // Temperature HR
-  // uint16_t dieTempHR = mp27.getHRDieTemperature();
-  // Serial.print("Die Temperature HR: ");
-  // Serial.println(dieTempHR);
+  uint16_t dieTempHR = mp27.getHRDieTemperature();
+  Serial.print("Die Temperature HR: ");
+  Serial.println(dieTempHR);
 
   // ADC Readings
   uint16_t adcValues[4];
@@ -162,8 +239,7 @@ void checkSensors() {
   Serial.println(mp27.getVTopReadings());
 
   // Power state
-  Serial.print("Power status: "); 
-  Serial.println(mp27.powerStatus(), BIN);
+  mp27.powerStatus();
 }
 void checkInt(){
 
@@ -178,6 +254,7 @@ void checkInt(){
   }
   Serial.println("No Interrupts...");
 }
+
 void handleInt(bool *intFlags) {
   Serial.println("Handling Interrupts...");
   for (int i = 0; i < 32; i++) {
@@ -199,8 +276,8 @@ void handleInt(bool *intFlags) {
           Serial.println("Mode change detected");
           mp27.powerStatus();
           mp27.clearInt(i);
-        }break;
-        
+          break;
+        }
         case 11: break;
         case 12: break;
         case 13: break;
@@ -208,114 +285,41 @@ void handleInt(bool *intFlags) {
           Serial.println("Current change detected");
           mp27.currentDirection();
           mp27.clearInt(i);
-        }break;
-        
+          break;
+        }
         case 15: break;
-        case 16:{          
-          Serial.println("CRC done");
-          mp27.clearInt(i);
-        }break;
+        case 16: break;
         case 17: break;
         case 18: break;
         case 19: break;
         case 20:{
           int openWires = mp27.readAdd(RD_OPENH);  
-          for (int j = 0; j < 11; j++) {
-            if ((openWires >> j) & 0x01){ 
-              Serial.print("Cell "); Serial.print(j); Serial.println(" Open");
+          for (int i = 0; i < 11; i++) {
+            int currentWire = (openWires >> i) & 0x01;
+            if (currentWire){
+              Serial.print("Cell "); Serial.print(i); Serial.println(" Open");
             }
           }
-        }break;
-        case 21:{         
+          break;
+        }
+        case 21:{          
           int deadCell = mp27.readAdd(RD_CELL_DEAD);  
-          for (int k = 0; k < mp2790_nCells; k++) {
-            if ((deadCell >> k) & 0x01){
-              Serial.print("Cell "); Serial.print(k); Serial.println(" Dead");
+          for (int i = 0; i < mp2790_nCells; i++) {
+            int currentWire = (deadCell >> i) & 0x01;
+            if (currentWire){
+              Serial.print("Cell "); Serial.print(i); Serial.println(" Dead");
             }
           }
-        }break;
+          break;
+        }
         case 22: break;
         case 23: break;
         case 24: break;
         case 25: break;
         case 26: break;
         case 27: break;
-        default:{ 
-          Serial.println("Interrupt out of boundaries");
-        }break;
+        default: Serial.println("Interrupt out of boundaries"); break;
       }
-    }
-  }
-}
-
-// ------------------------- Logging -------------------------------
-// Appends the event to the log file
-bool appendLog(const char* message) {
-  // Checks SD card presence
-  if (!SD.begin(BUILTIN_SDCARD)) {
-    Serial.println("SD not initialized.");
-    return false;
-  }
-  // Checks file availability
-  File file = SD.open(LOG_PATH, FILE_WRITE);
-  if (!file) {
-    Serial.println("Failed to open log file.");
-    return false;
-  }
-  //Gets the time
-  char ts[20];
-  rtcNowISO(ts, sizeof(ts));
-  //Writes to file
-  file.print(ts);
-  file.print(" - ");
-  file.print(userName);
-  file.print(" - ");
-  file.println(message);
-  file.close();
-  return true;
-}
-
-/* ------------------ RTC -------------------- */
-// Format current RTC time as "YYYY-MM-DD HH:MM:SS"
-void rtcNowISO(char* buf, size_t buflen) {
-  time_t t = now();
-  snprintf(buf, buflen, "%04d-%02d-%02d%02d:%02d:%02d",
-           year(t), month(t), day(t),
-           hour(t), minute(t), second(t));
-}
-// Prints the time to console
-void digitalClockDisplay() {
-  // digital clock display of the time
-  if (millis() - lastChangeMs < 1000){
-    return;
-  }
-  lastChangeMs = millis();
-  Serial.print(hour());
-  printDigits(minute());
-  printDigits(second());
-  Serial.print(" ");
-  Serial.print(day());
-  Serial.print(" ");
-  Serial.print(month());
-  Serial.print(" ");
-  Serial.print(year());
-  Serial.println();
-}
-// Adds leading 0 in single digit number
-void printDigits(int digits) {
-  Serial.print(":");
-  if (digits < 10)
-    Serial.print('0');
-  Serial.print(digits);
-}
-// Parses the incoming serial message in the Unix format
-void processSyncMessage() {
-  unsigned long pctime;
-  const unsigned long DEFAULT_TIME = 1757442497;  // Sep 9 2025
-  if (Serial.find(TIME_HEADER)) {
-    pctime = Serial.parseInt();
-    if (pctime >= DEFAULT_TIME) {  // Check valid integer
-      setTime(pctime);             // Sync Arduino clock to the time received on the serial port
     }
   }
 }
