@@ -23,4 +23,6 @@ Aplicar todos los cambios, calibrar actuadores y guardar
 
 
 ## Parámetros de controladores
+
+Depende de cada eje!!
 <img width="489" height="448" alt="image" src="https://github.com/user-attachments/assets/1f28a296-760b-4f10-92c5-94b83b1062c2" />
