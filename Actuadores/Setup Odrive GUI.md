@@ -4,8 +4,8 @@
 <img width="814" height="288" alt="image" src="https://github.com/user-attachments/assets/6f009d8e-1c18-424f-8be2-8c11fea5c6d4" />
 
 ### Motor
-<img width="395" height="316" alt="image" src="https://github.com/user-attachments/assets/e451a375-e2e4-4dd8-a01c-c0667dc5a877" />
 <img width="154" height="160" alt="image" src="https://github.com/user-attachments/assets/5983c9ee-268a-4199-86d1-fde4982b6acf" />
+<img width="395" height="316" alt="image" src="https://github.com/user-attachments/assets/e451a375-e2e4-4dd8-a01c-c0667dc5a877" />
 
 ### Encoder
 <img width="161" height="162" alt="image" src="https://github.com/user-attachments/assets/14b6b013-93c2-4fa4-b662-9335d0b28186" />
