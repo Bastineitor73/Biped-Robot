@@ -20,3 +20,7 @@
 Aplicar todos los cambios, calibrar actuadores y guardar
 
 <img width="826" height="592" alt="image" src="https://github.com/user-attachments/assets/1b426aca-858a-4f2b-b012-e6ca0c67b285" />
+
+
+## Parámetros de controladores
+<img width="489" height="448" alt="image" src="https://github.com/user-attachments/assets/1f28a296-760b-4f10-92c5-94b83b1062c2" />
