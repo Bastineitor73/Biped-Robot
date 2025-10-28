@@ -1,3 +1,13 @@
+# Contenidos
+- [Proyecto B1P0](#proyecto-b1p0)
+  * [Objetivo](#objetivo)
+  * [Visiones](#visiones)
+  * [Temas actuales](#temas-actuales)
+  * [Diagrama Electrico](#diagrama-electrico)
+- [Avances](#avances)
+- [Invitacion Charla](#invitacion-charla)
+- [Contacto](#contacto)
+
 # Proyecto B1P0
 <img src="https://github.com/user-attachments/assets/24246fe2-8981-40c8-a690-1a3461429da9" width="460" height="500"/>
 
@@ -24,7 +34,7 @@
 
    ![Software y Comunicación](https://github.com/user-attachments/assets/26a63348-8edc-45db-a534-23719b4401ff)
 
-## Diagrama Eléctrico
+## Diagrama Electrico
 <img src="https://github.com/user-attachments/assets/5943e165-8335-4059-8caa-351949f14cfb" width="782" height="496"/>
 
 # Avances
@@ -35,7 +45,7 @@
 
 [https://github.com/user-attachments/assets/344ce4eb-d846-4b8e-a158-e9851668d182](https://github.com/user-attachments/assets/149b1f66-dc8b-4094-9f17-feb6b6dd1998)
 
-# Invitación Charla Nov-30 16:00
+# Invitacion Charla
 ![invitacion_1](https://github.com/user-attachments/assets/5fcd606d-3d92-496c-90b0-04b37f119150)
 
 # Contacto
