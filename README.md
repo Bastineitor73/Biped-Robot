@@ -36,11 +36,8 @@
 [https://github.com/user-attachments/assets/344ce4eb-d846-4b8e-a158-e9851668d182](https://github.com/user-attachments/assets/149b1f66-dc8b-4094-9f17-feb6b6dd1998)
 
 # Invitación Charla Nov-30 16:00
-
-
+<img src="https://github.com/Bastineitor73/Biped-Robot/blob/c8ae4e2d175b429e6f289c989470ecad2729b705/invitacion_1.jpg" width="500" height="800"/>
 
 # Contacto
-
 Quieres ser parte de B1P0? Envía un correo a agarrido2018@udec.cl 
-
-
+<img src="https://github.com/Bastineitor73/Biped-Robot/blob/main/invitacion_2.png" width="500" height="800"/>
