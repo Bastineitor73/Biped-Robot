@@ -11,6 +11,8 @@
 # Proyecto B1P0
 <img src="https://github.com/user-attachments/assets/24246fe2-8981-40c8-a690-1a3461429da9" width="460" height="500"/>
 
+Quieres ser parte de B1P0? Envía un correo a agarrido2018@udec.cl o a ginostroza2020@udec.cl
+
 ## Objetivo
 "Crear un robot bípedo estable y escalable a lo largo del tiempo desarrollado por alumnos del DIE, capaz de desenvolverse en entornos industriales complejos, catástrofes naturales, inspecciones y escenarios de alto riesgo humano"
 
@@ -51,4 +53,4 @@
 # Contacto
 <img width="600" height="800" alt="invitacion_2" src="https://github.com/user-attachments/assets/839301cb-b6b8-428c-8f0d-c9b3ff3a189b" />
 
-Quieres ser parte de B1P0? Envía un correo a agarrido2018@udec.cl 
+Quieres ser parte de B1P0? Envía un correo a agarrido2018@udec.cl o a ginostroza2020@udec.cl
