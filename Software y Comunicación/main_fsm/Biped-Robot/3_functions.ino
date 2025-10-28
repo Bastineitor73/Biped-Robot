@@ -1,3 +1,24 @@
+// Init
+void serialInput(){
+  // Serial input
+  //Time
+  if (timeStatus() == timeNotSet){
+    Serial.println("Input time");
+    while (!Serial.available()) {
+    }
+    processSyncMessage();
+  }
+
+  //UserName
+  if(userName == 0){
+    Serial.println("Input User Name");
+    while (!Serial.available()) {
+      Serial.print("waiting");
+    }
+    userName = Serial.read();
+  }
+}
+
 // Mp2790
 
 void setupMP2790() {
@@ -63,7 +84,7 @@ void setupValues(){
   mp27.writeAdd(0x10, 0x4E9C);   // WDT_CFG 0x4E9D: WDT on 0x4E9C: WDT off
   mp27.writeAdd(0x12, 0x0000);   // FET_CTRL
   mp27.writeAdd(0x13, 0x051B);   // FET_MODE
-  mp27.writeAdd(0x14, 0x68F0);   // FET_CFG
+  mp27.writeAdd(0x14, 0x68F0);   // FET_CFG 0x68F0: 10Vgs, 0x08F0: 5Vgs
   mp27.writeAdd(0x19, 0xC7FF);   // INTO_EN
   mp27.writeAdd(0x1A, 0x2FEE);   // INT1_EN 0x2FFE: normal, 0x2FEE: ow off
   mp27.writeAdd(0x1B, 0x0000);   // INT_TYPE0
@@ -72,7 +93,7 @@ void setupValues(){
   mp27.writeAdd(0x1E, 0x40FF);   // MASK_INTO
   mp27.writeAdd(0x1F, 0x0142);   // MASK_INT1
   mp27.writeAdd(0x23, 0x01BF);   // OCFT_CTRL
-  mp27.writeAdd(0x24, 0x2C19);   // DSGOC_LIM
+  mp27.writeAdd(0x24, 0x2C10);   // DSGOC_LIM && 0x2C10: 42.5mV
   mp27.writeAdd(0x25, 0x0428);   // DSGOC_DEG
   mp27.writeAdd(0x26, 0x0404);   // CHGOC_DEG
   mp27.writeAdd(0x2A, 0x003F);   // SCFT_CTRL
@@ -90,7 +111,7 @@ void setupValues(){
   mp27.writeAdd(0x3D, 0x0002);   // CELL_MSMT
   mp27.writeAdd(0x44, 0x0000);   // NTC_CLR
   mp27.writeAdd(0x46, 0x000A);   // DIE_CFG
-  mp27.writeAdd(0x47, 0xE4F5);   // NTC_CFG
+  mp27.writeAdd(0x47, 0xA4F5);   // NTC_CFG  0xE4F5: def faults on. 0xA4F5: ntc dsg cold off
   mp27.writeAdd(0x48, 0x012E);   // NTCC_OTHR_DSG
   mp27.writeAdd(0x49, 0x0294);   // NTCC_UTHR_DSG
   mp27.writeAdd(0x4A, 0x012E);   // NTCC_OTHR_CHG
@@ -147,6 +168,8 @@ void checkSensors() {
   }
   Serial.println();
 
+  // mp27.initHR();
+
   // ADC Readings HR
   uint16_t adcHRValues[3];
   mp27.getHRADCReadings(adcHRValues);
@@ -163,7 +186,8 @@ void checkSensors() {
 
   // Power state
   Serial.print("Power status: "); 
-  Serial.println(mp27.powerStatus(), BIN);
+  pwrStatus = mp27.powerStatus();
+  Serial.println(pwrStatus, BIN);
 }
 void checkInt(){
 
@@ -194,55 +218,69 @@ void handleInt(bool *intFlags) {
         case 6: break;
         case 7: break;
         case 8: break;
-        case 9: break;
+        case 9:{
+          Serial.println("Fault recovered.");
+          mp27.clearInt(i);
+          break;
+        }
         case 10:{
-          Serial.println("Mode change detected");
+          Serial.println("Mode change detected.");
           mp27.powerStatus();
           mp27.clearInt(i);
-        }break;
-        
+        break;
+        }        
         case 11: break;
         case 12: break;
         case 13: break;
         case 14:{
-          Serial.println("Current change detected");
+          Serial.println("Current change detected.");
           mp27.currentDirection();
           mp27.clearInt(i);
-        }break;
-        
+          break;
+        }
         case 15: break;
         case 16:{          
-          Serial.println("CRC done");
+          Serial.println("CRC done.");
           mp27.clearInt(i);
-        }break;
+          break;
+        }
         case 17: break;
         case 18: break;
-        case 19: break;
+        case 19: {
+          Serial.println("Vtop OV.");
+          mp27.clearInt(i);
+          break;
+        }
         case 20:{
           int openWires = mp27.readAdd(RD_OPENH);  
           for (int j = 0; j < 11; j++) {
             if ((openWires >> j) & 0x01){ 
-              Serial.print("Cell "); Serial.print(j); Serial.println(" Open");
+              Serial.print("Cell "); Serial.print(j); Serial.println(" Open.");
             }
           }
-        }break;
+          break;
+        }
         case 21:{         
           int deadCell = mp27.readAdd(RD_CELL_DEAD);  
           for (int k = 0; k < mp2790_nCells; k++) {
             if ((deadCell >> k) & 0x01){
-              Serial.print("Cell "); Serial.print(k); Serial.println(" Dead");
+              Serial.print("Cell "); Serial.print(k); Serial.println(" Dead.");
             }
           }
-        }break;
+        break;}
         case 22: break;
         case 23: break;
         case 24: break;
-        case 25: break;
+        case 25:{
+          Serial.println("Scheduler busy.");
+          mp27.clearInt(i);
+          break;
+        }
         case 26: break;
         case 27: break;
         default:{ 
           Serial.println("Interrupt out of boundaries");
-        }break;
+        break;}
       }
     }
   }

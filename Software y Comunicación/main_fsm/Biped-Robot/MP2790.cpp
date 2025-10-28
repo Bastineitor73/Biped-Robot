@@ -187,17 +187,68 @@ void MP2790::currentDirection() {
     }
 }
 
+void MP2790::getFault() {
+    uint32_t tempFlags = 0;
+    uint16_t fault1 =  this->readAdd(FT_STS1);
+    uint16_t fault2 =  this->readAdd(FT_STS2);
+    tempFlags = (uint32_t)fault1 | (uint32_t)fault2 << 16;
+
+    // Serial.print("Interrupts_read_raw");
+    // Serial.println(int0, BIN);
+    // Serial.println(int1, BIN);
+    // Serial.println(tempFlags, BIN);
+
+    for (byte i = 0; i < 32; i++) {
+        if ((tempFlags >> i) & 0x01) {
+            Serial.print("Fault Flag ");
+            Serial.print(i);
+            Serial.println(" is set.");
+            Serial.println(FaultTable[i].name);
+            MP2790::clearFT(i);
+        }
+    }
+    if(!tempFlags){
+        if(Serial){
+            Serial.println("No faults.");
+        }
+    }
+
+    return;
+}
+
+void MP2790::clearFT(uint8_t ftNum) {
+
+    if (ftNum < 16){
+        RegDes reg = {FT_CLR, ftNum, 1, RWAccess::READ_WRITE};
+        MP2790::writeAdd(reg, 1);
+        if (Serial) {
+            Serial.print("Cleared fault.");
+            Serial.println(ftNum);
+        }
+    }
+    else if(ftNum >= 16 && ftNum <18){
+        MP2790::writeAdd(MP2790_Reg::V3V3_VDD_FAULT_CLR, 1); 
+        if (Serial) {
+            Serial.print("Cleared fault.");
+            Serial.println(ftNum);
+        }
+    }
+    else{    
+        if (Serial) {
+            Serial.println("Unknown fault not handled.");
+        }
+        return;
+    }
+
+    return;
+}
+
 bool MP2790::getInt(bool *intFlags) {
     bool intStatus = false;
     uint32_t tempFlags = 0;
     uint16_t int0 =  this->readAdd(RD_INT0);
     uint16_t int1 =  this->readAdd(RD_INT1);
     tempFlags = (uint32_t)int0 | (uint32_t)int1 << 16;
-
-    // Serial.print("Interrupts_read_raw");
-    // Serial.println(int0, BIN);
-    // Serial.println(int1, BIN);
-    // Serial.println(tempFlags, BIN);
 
     for (byte i = 0; i < 32; i++) {
         intFlags[i] = (tempFlags >> i) & 0x01;
@@ -211,7 +262,6 @@ bool MP2790::getInt(bool *intFlags) {
     }
     return intStatus;
 }
-
 void MP2790::clearInt(uint8_t intNum) {
 
     if (intNum < 16){
@@ -219,12 +269,12 @@ void MP2790::clearInt(uint8_t intNum) {
         MP2790::writeAdd(reg, 1);
     }
     else{
-        RegDes reg = {INT1_CLR, intNum-16, 1};
+        RegDes reg = {INT1_CLR, intNum-16, 1, RWAccess::READ_WRITE};
         MP2790::writeAdd(reg, 1);
     }
 
     if (Serial) {
-        Serial.print("Cleared interrupt ");
+        Serial.print("Cleared interrupt.");
         Serial.println(intNum);
     }
     return;
@@ -428,6 +478,52 @@ void MP2790::getADCReadings(uint16_t* adcValues) {
             adcValues[i] = (uint16_t)(rawValue * 3.2227f);// / 1000.0f);
         }
     }
+}
+/**
+ * @brief Starts the HR ADC scanning.
+ * @return The status of the scan.
+ */
+bool MP2790::initHR(){
+    //Check ADC availability
+    if((this-> readAdd(MP2790_Reg::VADC_SCHEDULER)) != 0){
+        if(Serial){
+            Serial.println("ADC not free.");
+            _scanInProgress = false;
+            return false;
+        }
+    }
+    //Check ADC error
+    if(this-> readAdd(MP2790_Reg::SCAN_ERROR_STS)){
+        if(Serial){
+            Serial.println("ADC Error.");
+            _scanInProgress = false;
+            return false;
+        }
+    }
+    //Check if scan was initiated
+    if(!_scanInProgress){
+        MP2790::writeAdd(MP2790_Reg::ADC_SCAN_GO, 1);
+        _scanInProgress = true;
+        _scanStartTime = millis();
+    }
+    
+    //Checks ADC completion
+    if(millis() - _scanStartTime < ADC_CONVERSION_TIME ){
+        if (this-> readAdd(MP2790_Reg::SCAN_DONE_STS)){
+            _scanInProgress = false;
+            return true;
+        }
+        //Checks ADC completion timeout
+        if(millis() - _scanStartTime < ADC_SCAN_TIMEOUT){
+            if (Serial){
+                Serial.println("ADC Timeout.");
+                _scanInProgress = false;
+            }
+            return false;
+        }
+    }
+
+    return false;
 }
 
 /**

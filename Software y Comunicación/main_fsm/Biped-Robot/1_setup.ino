@@ -31,4 +31,8 @@ void setup() {
   //Check MP2790 connection
   mpStatus = mp27.testConnection();
 
+  //Data input
+  serialInput();
+  
+  Serial.print("Routine start.");
 }

@@ -1,26 +1,11 @@
 void loop() {
 
-  // Serial input
-  //Time
-  if (timeStatus() == timeNotSet){
-    Serial.println("Input time");
-    while (!Serial.available()) {
-    }
-    processSyncMessage();
-    delay(500);
-    return;
+
+  if(mp27._scanInProgress){
+    mp27.initHR();
   }
 
-
-  //UserName
-  if(userName == 0){
-    Serial.println("Input User Name");
-    while (!Serial.available()) {
-    }
-    userName = Serial.read();
-    return;
-  }
-
+//FSM - WIP
 /*
 
   // switch (robotMode)
@@ -69,13 +54,15 @@ void loop() {
 */
 
 
-  // digitalClockDisplay();
+// digitalClockDisplay();
 
 // if (!digitalRead(BUTTON_PIN) && ((millis()- lastChangeMs)>DEBOUNCE_MS)){
 //   Serial.println("button pressed");
 //   lastChangeMs = millis();
 // }
 
+
+//Pre config sequence
  //Setup sequence when button is pressed
   if ((digitalRead(BUTTON_PIN) == LOW) && (millis() - lastMillis > BUTTON_DEBOUNCE)){
     lastMillis = millis();
@@ -89,23 +76,33 @@ void loop() {
     }
     checkSensors();
     checkInt();
-    if (mp27.powerStatus() == (8 || 1)){
+    mp27.getFault();
+    if (pwrStatus == 8 || pwrStatus == 1){
       mp27.writeAdd(MP2790_Reg::DRIVER_FAULT_CLR, 1);
       mp27.writeAdd(MP2790_Reg::ACTIVE_CTRL, 1);
-      Serial.println("here");
+      Serial.println("Fet on.");
+    }
+    if (pwrStatus == 16){
+      mp27.writeAdd(MP2790_Reg::ACTIVE_CTRL, 0);
+      Serial.println("Fet off.");
     }
   }
 
-  if (millis() > 30000){
-    if((second() % 3) == 0 && (second()) % 8 != 0 && fetcounter == 0){
-      mp27.writeAdd(MP2790_Reg::ACTIVE_CTRL, 1);
-      Serial.println("FET on");
-      fetcounter++;
-    }
-    if(((second()) % 8 == 0) && (fetcounter == 1)){
-      mp27.writeAdd(MP2790_Reg::ACTIVE_CTRL, 0);
-      Serial.println("FET off");
-      fetcounter = 0;
-    }   
-  }
+  // //Fet testing
+  // if (millis() > 30000){
+  //   if((second() % 3) == 0 && (second()) % 8 != 0 && fetcounter == 0){
+  //     mp27.writeAdd(MP2790_Reg::DRIVER_FAULT_CLR, 1);
+  //     mp27.writeAdd(MP2790_Reg::ACTIVE_CTRL, 1);
+  //     Serial.println("FET on");
+  //     fetcounter++;
+  //   }
+  //   if(((second()) % 8 == 0) && (fetcounter == 1)){
+  //     mp27.writeAdd(MP2790_Reg::DRIVER_FAULT_CLR, 1);
+  //     mp27.writeAdd(MP2790_Reg::ACTIVE_CTRL, 0 );
+  //     Serial.println("FET off");
+  //     fetcounter = 0;
+  //   }   
+  // }
+
+
 }

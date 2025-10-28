@@ -7,12 +7,13 @@
 
 // T1757676691
 /* ---------------- Functions -----------------*/
-void xAlertInterrupt();
+// void xAlertInterrupt();
 void rtcNowISO(char*, size_t);
 bool appendLog(const char*);
 void digitalClockDisplay();
 void printDigits(int);
 void processSyncMessage();
+void serialInput();
 //MP2790
 void setupMP2790();
 void setupValues();
@@ -71,6 +72,12 @@ bool intStatus = false;
 bool intFlags[32] = {0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0,
                     0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0};
 
+//Quick interrupt toggle
+// bool intEn0[16] =    {1,1,0,0, 0,1,1,1, 1,1,1,1, 1,1,1,1};
+// bool intEn1[16] =    {0,0,1,0, 1,1,1,1, 1,1,1,0, 1,1,1,0};
+// bool intMask0[16] =  {0,1,0,0, 0,0,0,0, 1,1,1,1, 1,1,1,1};
+// bool intMask1[16] =  {0,0,0,0, 0,0,0,1, 0,1,0,0, 0,0,1,0};
+
 //Alert and error flags
 bool cellUVStatus = false;
 bool cellOVStatus = false;
@@ -85,7 +92,7 @@ bool cellOpenWireFlags[mp2790_nCells] = {0};
 uint16_t adcValues[4] = {0}; // Array to hold ADC readings
 uint16_t ntcValues[4] = {0}; // Array to hold NTC readings
 
-
+uint8_t pwrStatus;
 
 
 

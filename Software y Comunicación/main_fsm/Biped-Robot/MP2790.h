@@ -19,9 +19,12 @@
 #include <Arduino.h>
 
 // Main definitions
-#define MP27XX_DEFAULT_ADDRESS 0x01
-#define MP27XX_DEFAULT_CELLS   10
-#define MP2790_R_SENSE         1.5
+#define MP27XX_DEFAULT_ADDRESS  0x01
+#define MP27XX_DEFAULT_CELLS    10
+#define MP2790_R_SENSE          1.5
+#define ADC_CONVERSION_TIME     20
+#define ADC_SCAN_TIMEOUT        2000
+
 
 // ============================================================================
 // Parent Register Addresses
@@ -866,6 +869,28 @@ static const Interrupt InterruptTable[] = {
 };
 static const size_t M_InterruptTable = sizeof(InterruptTable)/sizeof(InterruptTable[0]);
 
+static const Interrupt FaultTable[] = {
+    {"00_Cell UV"                      ,nullptr                ,0 },
+    {"01_Cell OV"                      ,nullptr                ,0 },
+    {"02_Cell Dead"                    ,nullptr                ,0 },
+    {"03_Cell Mismatch"                ,nullptr                ,0 },
+    {"04_Open Wire"                    ,nullptr                ,0 },
+    {"05_Vtop UV"                      ,nullptr                ,0 },
+    {"06_Vtop OV"                      ,nullptr                ,0 },
+    {"07_PCB NTC"                      ,nullptr                ,0 },
+    {"08_Cell CHG NTC"                 ,nullptr                ,0 },
+    {"09_Cell DSG NTC"                 ,nullptr                ,0 },
+    {"10_OC1 DSG"                      ,nullptr                ,0 },
+    {"11_OC2 DSG"                      ,nullptr                ,0 },
+    {"12_OC CHG"                       ,nullptr                ,0 },
+    {"13_SC DSG"                       ,nullptr                ,0 },
+    {"14_SC CHG"                       ,nullptr                ,0 },
+    {"15_DIE temp"                     ,nullptr                ,0 },
+    {"16_OTP CRC"                      ,nullptr                ,0 },
+    {"17_3V3 UV"                       ,nullptr                ,0 },
+    {"18_VDD UV"                       ,nullptr                ,0 },
+    {"19_Driver turn on"               ,nullptr                ,0 },
+};
 
 
 /**
@@ -893,6 +918,8 @@ public:
 
     //Register methods
         //Main register
+    void getFault();
+    void clearFT(uint8_t ftNum); 
     bool getInt(bool* intFlags);
     void clearInt(uint8_t intNum); 
 
@@ -904,6 +931,8 @@ public:
     uint16_t getDieTemperature();                           //Die temperature
     void getADCReadings(uint16_t* adcValues);               //ADC readings
     //HR ADC readings
+    bool initHR();
+
     uint16_t getPackPReadings();
     uint16_t getVTopReadings();
     int16_t getITopReadings();
@@ -913,6 +942,8 @@ public:
     uint16_t getHRDieTemperature();
     void getHRADCReadings(uint16_t* adcHRValues);
 
+    bool _scanInProgress = false;
+    uint32_t _scanStartTime;
 
 private:
     uint8_t _devAddr;
