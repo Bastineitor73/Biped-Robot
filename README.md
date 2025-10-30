@@ -1,3 +1,7 @@
+# Contacto
+
+Quieres ser parte de B1P0? Envía un correo a agarrido2018@udec.cl o a ginostroza2020@udec.cl
+
 # Contenidos
 - [Proyecto B1P0](#proyecto-b1p0)
   * [Objetivo](#objetivo)
@@ -48,7 +52,5 @@ https://github.com/user-attachments/assets/e0c73ede-dcd1-4829-920c-aed435cbe2b3
 # Invitacion Charla
 ![invitacion_1](https://github.com/user-attachments/assets/5fcd606d-3d92-496c-90b0-04b37f119150)
 
-# Contacto
 <img width="600" height="800" alt="invitacion_2" src="https://github.com/user-attachments/assets/839301cb-b6b8-428c-8f0d-c9b3ff3a189b" />
 
-Quieres ser parte de B1P0? Envía un correo a agarrido2018@udec.cl o a ginostroza2020@udec.cl
