@@ -34,6 +34,12 @@ Quieres ser parte de B1P0? Envía un correo a agarrido2018@udec.cl o a ginostroz
 
 5.- Diseño e implementación de un sistema de control remoto inalámbrico para robot bípedo utilizando tecnologías RF, WiFi o Bluetooth.
 
+6.- Diseño e implementación de un sistema de control adaptativo o predictivo para la estabilidad de un robot bípedo
+
+7.- Desarrollo de un sistema de estimación de estados mediante fusión de datos inerciales (IMU) y modelos dinámicos
+
+8.- Implementación de un sistema de percepción visual y mapeo de entorno mediante cámara de profundidad
+
    ![Software y Comunicación](https://github.com/user-attachments/assets/26a63348-8edc-45db-a534-23719b4401ff)
 
 ## Diagrama Electrico
