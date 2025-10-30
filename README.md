@@ -42,7 +42,7 @@ Quieres ser parte de B1P0? Envía un correo a agarrido2018@udec.cl o a ginostroz
 
 # Avance Actual
 
-##Octubre 2025
+## Octubre 2025
 
 https://github.com/user-attachments/assets/e0c73ede-dcd1-4829-920c-aed435cbe2b3
 
