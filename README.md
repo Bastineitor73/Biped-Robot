@@ -26,15 +26,15 @@ Quieres ser parte de B1P0? Envía un correo a agarrido2018@udec.cl o a ginostroz
 ## Temas actuales
 1.- Modelación física y desarrollo de un gemelo digital para entrenamiento y simulaciones
 
-2.- Estudio y aplicación de cinemática inversa para el control preciso de extremidades en un robot bípedo, con validación en entornos simulados y reales.
+2.- Estudio y aplicación de cinemática inversa para el control de extremidades, con validación en entornos simulados y reales.
 
-3.- Rediseño estructural de un robot bípedo existente, mediante análisis de esfuerzos, selección de materiales, mejoras en sistemas mecánicos y resistencia.
+3.- Rediseño estructural del robot bípedo existente, mediante análisis de esfuerzos, estudio de materiales, mejoras en sistemas mecánicos y resistencia.
 
-4.- Diseño e integración de una arquitectura de software basada en ROS2 para la comunicación entre CPU, microcontroladores, actuadores y usuario
+4.- Diseño e integración de una arquitectura de software basada en ROS/ROS2 para la comunicación entre CPU, microcontroladores, actuadores y usuario
 
-5.- Diseño e implementación de un sistema de control remoto inalámbrico para robot bípedo utilizando tecnologías RF, WiFi o Bluetooth.
+5.- Diseño e implementación de un sistema de control remoto inalámbrico utilizando tecnologías RF, WiFi o Bluetooth.
 
-6.- Diseño e implementación de un sistema de control adaptativo o predictivo para la estabilidad de un robot bípedo
+6.- Diseño e implementación de un sistema de control adaptativo o predictivo para la estabilidad del robot bípedo
 
 7.- Desarrollo de un sistema de estimación de estados mediante fusión de datos inerciales (IMU) y modelos dinámicos
 
