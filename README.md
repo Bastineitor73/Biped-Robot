@@ -9,9 +9,7 @@
 - [Contacto](#contacto)
 
 # Proyecto B1P0
-![Proyecto B1P0](https://github.com/user-attachments/assets/eac38cec-7822-49df-802b-43f7ecfe59b9)
-
-<img src="https://github.com/user-attachments/assets/24246fe2-8981-40c8-a690-1a3461429da9" width="460" height="500"/>
+<img src="https://github.com/user-attachments/assets/eac38cec-7822-49df-802b-43f7ecfe59b9" width="460" height="500"/>
 
 Quieres ser parte de B1P0? Envía un correo a agarrido2018@udec.cl o a ginostroza2020@udec.cl
 
