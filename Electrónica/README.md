@@ -1,3 +1,6 @@
+# Diagrama Electrico
+<img src="https://github.com/user-attachments/assets/5943e165-8335-4059-8caa-351949f14cfb" width="782" height="496"/>
+
 # Lista de Dispositivos
 
 ## Microcontrolador Teensy 4.1
