@@ -40,11 +40,6 @@ Quieres ser parte de B1P0? Envía un correo a agarrido2018@udec.cl o a ginostroz
 
 8.- Implementación de un sistema de percepción visual y mapeo de entorno mediante cámara de profundidad
 
-   ![Software y Comunicación](https://github.com/user-attachments/assets/26a63348-8edc-45db-a534-23719b4401ff)
-
-## Diagrama Electrico
-<img src="https://github.com/user-attachments/assets/5943e165-8335-4059-8caa-351949f14cfb" width="782" height="496"/>
-
 # Avances
 <p align="center">
   <img src="https://github.com/user-attachments/assets/2082042d-ba07-42dc-af53-b3dd60be0df1" width="500" height="850"/>
