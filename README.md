@@ -51,7 +51,8 @@ Quieres ser parte de B1P0? Envía un correo a agarrido2018@udec.cl o a ginostroz
   <img src="https://github.com/user-attachments/assets/b80e0d6b-f3a5-4ad3-82f7-288b76549a1a" width="500" height="600"/> 
 </p>
 
-[https://github.com/user-attachments/assets/344ce4eb-d846-4b8e-a158-e9851668d182](https://github.com/user-attachments/assets/149b1f66-dc8b-4094-9f17-feb6b6dd1998)
+https://github.com/user-attachments/assets/e0c73ede-dcd1-4829-920c-aed435cbe2b3
+
 
 # Invitacion Charla
 ![invitacion_1](https://github.com/user-attachments/assets/5fcd606d-3d92-496c-90b0-04b37f119150)
