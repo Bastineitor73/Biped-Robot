@@ -1,6 +1,6 @@
 # Contacto
 
-Quieres ser parte de B1P0? Envía un correo a josespi@udec.cl, mariomedina@udec.cl, agarrido2018@udec.cl, a ginostroza2020@udec.cl
+Quieres ser parte de B1P0? Envía un correo a josespi@udec.cl, mariomedina@udec.cl, agarrido2018@udec.cl o ginostroza2020@udec.cl
 
 # Contenidos
 - [Proyecto B1P0](#proyecto-b1p0)
